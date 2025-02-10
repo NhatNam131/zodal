@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "minify": "terser zodal.js -o zodal.min.js && csso zodal.css -o zodal.min.css"
+  },
+  "dependencies": {
+    "csso-cli": "^4.0.2",
+    "terser": "^5.38.1"
+  }
+}
