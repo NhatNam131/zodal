@@ -34,16 +34,16 @@ Zodal.prototype._build = function () {
   const container = document.createElement("div");
   container.className = "zodal-container";
 
+  this.opt.cssClass.forEach((cssClass) => {
+    container.classList.add(cssClass);
+  });
+
   if (this._closeBtn) {
     const btnClose = this._createButton("&times;", "zodal-btn-close", () =>
       this.close()
     );
     container.append(btnClose);
   }
-
-  this.opt.cssClass.forEach((cssClass) => {
-    container.classList.add(cssClass);
-  });
 
   const zodalContent = document.createElement("div");
   zodalContent.className = "zodal-content";
