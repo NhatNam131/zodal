@@ -45,11 +45,11 @@ Zodal.prototype._build = function () {
     container.classList.add(cssClass);
   });
 
-  const ZodalContent = document.createElement("div");
-  ZodalContent.className = "zodal-content";
-  ZodalContent.append(content);
+  const zodalContent = document.createElement("div");
+  zodalContent.className = "zodal-content";
+  zodalContent.append(content);
 
-  container.append(ZodalContent);
+  container.append(zodalContent);
 
   if (this.opt.footer) {
     this._ZodalFooter = document.createElement("div");
