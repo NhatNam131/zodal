@@ -4,6 +4,7 @@ function Zodal(options = {}) {
   this.opt = Object.assign(
     {
       closeMethod: ["button", "overlay", "escape"],
+      cssClass: [],
       footer: false,
       destroyZodal: true,
     },
@@ -39,6 +40,10 @@ Zodal.prototype._build = function () {
     );
     container.append(btnClose);
   }
+
+  this.opt.cssClass.forEach((cssClass) => {
+    container.classList.add(cssClass);
+  });
 
   const ZodalContent = document.createElement("div");
   ZodalContent.className = "zodal-content";
