@@ -1,6 +1,26 @@
 Zodal.elements = [];
 
 function Zodal(options = {}) {
+  if (!options.content && !options.templateId) {
+    console.error("You must provide one of 'content' or 'templateId'");
+    return;
+  }
+
+  if (options.content && options.templateId) {
+    options.templateId = null;
+    console.warn(
+      "Both 'content' and 'templateId' are specified. 'content' will take precedence, and 'templateId' ignored"
+    );
+  }
+
+  if (options.templateId) {
+    this.template = document.querySelector(`#${options.templateId}`);
+
+    if (!this.template) {
+      console.error(`${options.templateId} does not exist`);
+    }
+  }
+
   this.opt = Object.assign(
     {
       closeMethod: ["button", "overlay", "escape"],
@@ -11,13 +31,9 @@ function Zodal(options = {}) {
     options
   );
 
-  this.template = document.querySelector(`#${this.opt.templateId}`);
-
-  if (!this.template) {
-    console.error(`${this.opt.templateId} does not exist`);
-  }
-
   this._footerButton = [];
+
+  this.content = this.opt.content;
 
   const closeMethod = this.opt.closeMethod;
   this._closeBtn = closeMethod.includes("button");
@@ -26,7 +42,13 @@ function Zodal(options = {}) {
 }
 
 Zodal.prototype._build = function () {
-  const content = this.template.content.cloneNode(true);
+  const contentNode = this.content
+    ? document.createElement("div")
+    : this.template.content.cloneNode(true);
+
+  if (this.content) {
+    contentNode.innerHTML = this.content;
+  }
 
   this._backdrop = document.createElement("div");
   this._backdrop.className = "zodal-backdrop";
@@ -47,7 +69,7 @@ Zodal.prototype._build = function () {
 
   const zodalContent = document.createElement("div");
   zodalContent.className = "zodal-content";
-  zodalContent.append(content);
+  zodalContent.append(contentNode);
 
   container.append(zodalContent);
 

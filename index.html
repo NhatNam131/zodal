@@ -9,6 +9,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/highlight/styles.css" media="all" />
+    <link rel="stylesheet" href="./src/zodal.css" />
     <link rel="stylesheet" href="./assets/styles.css" media="all" />
   </head>
   <body>
@@ -378,9 +379,24 @@ modal.close();</code></pre>
     </div>
     <!-- /CONTAINER -->
 
+    <template id="modal-1">
+      <h1>Modal content 1</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+        quisquam officiis sapiente molestias velit adipisci ipsa expedita
+        voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+        laudantium deleniti cupiditate.
+      </p>
+    </template>
     <script src="./assets/highlight/highlight.js"></script>
+    <script src="./src/zodal.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
+
+      const zodal = new Zodal({
+        templateId: "modal-1",
+        content: "<h1>This is content</h1>",
+      });
     </script>
   </body>
 </html>
