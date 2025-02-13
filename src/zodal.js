@@ -67,11 +67,11 @@ Zodal.prototype._build = function () {
     container.append(btnClose);
   }
 
-  const zodalContent = document.createElement("div");
-  zodalContent.className = "zodal-content";
-  zodalContent.append(contentNode);
+  this.zodalContent = document.createElement("div");
+  this.zodalContent.className = "zodal-content";
+  this.zodalContent.append(contentNode);
 
-  container.append(zodalContent);
+  container.append(this.zodalContent);
 
   if (this.opt.footer) {
     this._ZodalFooter = document.createElement("div");
@@ -88,6 +88,13 @@ Zodal.prototype._build = function () {
 
   this._backdrop.append(container);
   document.body.append(this._backdrop);
+};
+
+Zodal.prototype.setContent = function (content) {
+  this.content = content;
+  if (this.zodalContent) {
+    this.zodalContent.innerHTML = this.content;
+  }
 };
 
 Zodal.prototype._renderFooterContent = function () {
