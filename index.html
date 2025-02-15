@@ -9,8 +9,8 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/highlight/styles.css" media="all" />
-    <link rel="stylesheet" href="./src/zodal.css" />
     <link rel="stylesheet" href="./assets/styles.css" media="all" />
+    <link rel="stylesheet" href="./src/zodal.css" />
   </head>
   <body>
     <!-- HEADER -->
@@ -113,9 +113,9 @@
       <p>Optionally, include the Zodal CSS file for default styling:</p>
 
       <pre class="html"><code>&lt;link
-    rel=&quot;stylesheet&quot;
-    href=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal/zodal.min.css&quot;
-&gt;</code></pre>
+             rel=&quot;stylesheet&quot;
+             href=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal/zodal.min.css&quot;
+         &gt;</code></pre>
 
       <p>
         You can explore the list of CSS classes used by Zodal in the
@@ -125,38 +125,38 @@
 
       <h2 data-bullet="3" class="title" id="usage">Usage</h2>
       <pre class="javascript"><code>// Initialize a new modal
-const modal = new Zodal({
-    content: '&lt;h1&gt;This is content&lt;/h1&gt;',
-    // templateId: 'my-modal-template',
-    footer: true,
-    destroyZodal: false,
-    closeMethod: ['button', 'overlay', 'escape'],
-    cssClass: ['custom-class-1', 'custom-class-2'],
-    onOpen: function() {
-        console.log('Modal opened');
-    },
-    onClose: function() {
-        console.log('Modal closed');
-    },
-});
-
-// Set modal content
-modal.setContent('&lt;h1&gt;This is new content&lt;/h1&gt;');
-
-// Add footer buttons
-modal.addFooterButton('Cancel', 'btn btn--default', function(e) {
-    modal.close();
-});
-
-modal.addFooterButton('Confirm', 'btn btn--primary', function(e) {
-    modal.close();
-});
-
-// Open the modal
-modal.open();
-
-// Close the modal
-modal.close();</code></pre>
+         const modal = new Zodal({
+             content: '&lt;h1&gt;This is content&lt;/h1&gt;',
+             // templateId: 'my-modal-template',
+             footer: true,
+             destroyZodal: false,
+             closeMethod: ['button', 'overlay', 'escape'],
+             cssClass: ['custom-class-1', 'custom-class-2'],
+             onOpen: function() {
+                 console.log('Modal opened');
+             },
+             onClose: function() {
+                 console.log('Modal closed');
+             },
+         });
+         
+         // Set modal content
+         modal.setContent('&lt;h1&gt;This is new content&lt;/h1&gt;');
+         
+         // Add footer buttons
+         modal.addFooterButton('Cancel', 'btn btn--default', function(e) {
+             modal.close();
+         });
+         
+         modal.addFooterButton('Confirm', 'btn btn--primary', function(e) {
+             modal.close();
+         });
+         
+         // Open the modal
+         modal.open();
+         
+         // Close the modal
+         modal.close();</code></pre>
 
       <p>
         If you use <code>templateId</code>, ensure that a
@@ -165,14 +165,14 @@ modal.close();</code></pre>
       </p>
 
       <pre class="html">
-<code>&lt;template id="my-modal-template"&gt;
-    &lt;div&gt;
-        &lt;h1&gt;This is modal content&lt;/h1&gt;
-        &lt;p&gt;You can add any HTML here.&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-</code>
-</pre>
+         <code>&lt;template id="my-modal-template"&gt;
+             &lt;div&gt;
+                 &lt;h1&gt;This is modal content&lt;/h1&gt;
+                 &lt;p&gt;You can add any HTML here.&lt;/p&gt;
+             &lt;/div&gt;
+         &lt;/template&gt;
+         </code>
+         </pre>
       <p>
         <strong>Note:</strong> When using <code>templateId</code>, do not
         provide <code>content</code>. If both are specified,
@@ -378,7 +378,6 @@ modal.close();</code></pre>
       </footer>
     </div>
     <!-- /CONTAINER -->
-
     <template id="modal-1">
       <h1>Modal content 1</h1>
       <p>
@@ -388,14 +387,20 @@ modal.close();</code></pre>
         laudantium deleniti cupiditate.
       </p>
     </template>
+
     <script src="./assets/highlight/highlight.js"></script>
     <script src="./src/zodal.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
 
+      const zodal1 = document.querySelector(".js-zodal-modal-1");
+
       const zodal = new Zodal({
         templateId: "modal-1",
-        content: "<h1>This is content</h1>",
+      });
+
+      zodal1.addEventListener("click", () => {
+        zodal.open();
       });
     </script>
   </body>

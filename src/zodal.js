@@ -27,6 +27,8 @@ function Zodal(options = {}) {
       cssClass: [],
       footer: false,
       destroyZodal: true,
+      enableScrollLock: true,
+      scrollLockTarget: () => document.body,
     },
     options
   );
@@ -103,8 +105,8 @@ Zodal.prototype._renderFooterContent = function () {
   }
 };
 
-Zodal.prototype.setFooterContent = function (html) {
-  this._footerContent = html;
+Zodal.prototype.setFooterContent = function (content) {
+  this._footerContent = content;
   this._renderFooterContent();
 };
 
@@ -153,6 +155,17 @@ Zodal.prototype._getScrollWidth = function () {
   return this._scrollBarWidth;
 };
 
+Zodal.prototype._hasScrollBar = function (target) {
+  if ([document.documentElement, document.body].includes(target)) {
+    return (
+      document.documentElement.scrollHeight >
+        document.documentElement.clientHeight ||
+      document.body.scrollHeight > document.body.clientHeight
+    );
+  }
+  return target.scrollHeight > target.clientHeight;
+};
+
 Zodal.prototype.open = function () {
   Zodal.elements.push(this);
 
@@ -164,8 +177,16 @@ Zodal.prototype.open = function () {
     this._backdrop.classList.add("zodal-show");
   }, 0);
 
-  document.body.classList.add("no-scroll");
-  document.body.style.paddingRigth = this._getScrollWidth() + "px";
+  if (this.opt.enableScrollLock) {
+    const target = this.opt.scrollLockTarget();
+
+    if (this._hasScrollBar(target)) {
+      target.classList.add("zodal-no-scroll");
+      const targetPadRight = parseFloat(getComputedStyle(target).paddingRight);
+      target.style.paddingRight =
+        targetPadRight + this._getScrollWidth() + "px";
+    }
+  }
 
   if (this._closeOverlay) {
     this._backdrop.addEventListener("click", (e) => {
@@ -211,8 +232,13 @@ Zodal.prototype.close = function (destroy = this.opt.destroyZodal) {
       this._ZodalFooter = null;
     }
 
-    document.body.classList.remove("no-sroll");
-    document.body.style.paddingRight = "";
+    if (this.opt.enableScrollLock && !Zodal.elements.length) {
+      const target = this.opt.scrollLockTarget();
+      if (this._hasScrollBar(target)) {
+        target.classList.remove("zodal-no-scroll");
+        target.style.paddingRight = "";
+      }
+    }
 
     if (typeof this.opt.onClose === "function") this.opt.onClose();
   });
