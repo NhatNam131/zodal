@@ -76,16 +76,16 @@ Zodal.prototype._build = function () {
   container.append(this.zodalContent);
 
   if (this.opt.footer) {
-    this._ZodalFooter = document.createElement("div");
-    this._ZodalFooter.className = "zodal-footer";
+    this._zodalFooter = document.createElement("div");
+    this._zodalFooter.className = "zodal-footer";
 
     if (this._footerContent) {
-      this._ZodalFooter.innerHTML = this._footerContent;
+      this._zodalFooter.innerHTML = this._footerContent;
     }
 
     this._renderFooterButton();
 
-    container.append(this._ZodalFooter);
+    container.append(this._zodalFooter);
   }
 
   this._backdrop.append(container);
@@ -100,8 +100,8 @@ Zodal.prototype.setContent = function (content) {
 };
 
 Zodal.prototype._renderFooterContent = function () {
-  if (this._ZodalFooter) {
-    this._ZodalFooter.innerHTML = this._footerContent;
+  if (this._zodalFooter) {
+    this._zodalFooter.innerHTML = this._footerContent;
   }
 };
 
@@ -112,7 +112,7 @@ Zodal.prototype.setFooterContent = function (content) {
 
 Zodal.prototype._renderFooterButton = function () {
   this._footerButton.forEach((button) => {
-    this._ZodalFooter.append(button);
+    this._zodalFooter.append(button);
   });
 };
 
@@ -129,7 +129,7 @@ Zodal.prototype.addFooterButton = function (title, className, callback) {
   const button = this._createButton(title, className, callback);
   this._footerButton.push(button);
 
-  if (this._ZodalFooter) {
+  if (this._zodalFooter) {
     this._renderFooterButton();
   }
 };
@@ -180,7 +180,7 @@ Zodal.prototype.open = function () {
   if (this.opt.enableScrollLock) {
     const target = this.opt.scrollLockTarget();
 
-    if (this._hasScrollBar(target)) {
+    if (Zodal.elements.length === 1 && this._hasScrollBar(target)) {
       target.classList.add("zodal-no-scroll");
       const targetPadRight = parseFloat(getComputedStyle(target).paddingRight);
       target.style.paddingRight =
@@ -229,7 +229,7 @@ Zodal.prototype.close = function (destroy = this.opt.destroyZodal) {
     if (destroy && this._backdrop) {
       this._backdrop.remove();
       this._backdrop = null;
-      this._ZodalFooter = null;
+      this._zodalFooter = null;
     }
 
     if (this.opt.enableScrollLock && !Zodal.elements.length) {

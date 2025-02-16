@@ -44,7 +44,7 @@
   max-height: 300px;
   overflow: auto;
   margin-top: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
 }
 
 .zodal-show {
@@ -64,10 +64,43 @@
   max-height: 50rem;
 }
 
+.zodal-text-content {
+  text-align: justify;
+}
+
 .zodal-footer {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   margin-top: 1rem;
   font-weight: 600;
+}
+
+.zodal-btn {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  outline: none;
+  border: 0.1rem solid;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
+}
+
+.zodal-btn:hover {
+  opacity: 0.8;
+}
+
+.zodal-primary-btn {
+  border-color: #1ca595;
+  color: #fff;
+  background-color: #1ca595;
+}
+
+.zodal-outline-btn {
+  border-color: #1ca595;
+  color: #1ca595;
+  background-color: transparent;
+}
+
+.zodal-video {
+  width: 100%;
 }

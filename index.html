@@ -60,16 +60,16 @@
       <button class="btn btn--secondary btn-demo js-zodal-modal-3">
         Large Content Modal
       </button>
-      <button class="btn btn--secondary btn-demo js-zodal-modal-5">
+      <button class="btn btn--secondary btn-demo js-zodal-modal-4">
         Footer-Only Close Modal
       </button>
-      <button class="btn btn--secondary btn-demo js-zodal-modal-6">
+      <button class="btn btn--secondary btn-demo js-zodal-modal-5">
         Persistent Modal (Stays in DOM)
       </button>
-      <button class="btn btn--secondary btn-demo js-zodal-modal-7">
+      <button class="btn btn--secondary btn-demo js-zodal-modal-6">
         Multiple Modals
       </button>
-      <button class="btn btn--secondary btn-demo js-zodal-modal-4">
+      <button class="btn btn--secondary btn-demo js-zodal-modal-7">
         YouTube Embed Modal
       </button>
 
@@ -108,13 +108,13 @@
 
       <pre
         class="html"
-      ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal/zodal.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+      ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal@v1.0.0/zodal.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
       <p>Optionally, include the Zodal CSS file for default styling:</p>
 
       <pre class="html"><code>&lt;link
              rel=&quot;stylesheet&quot;
-             href=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal/zodal.min.css&quot;
+             href=&quot;https://cdn.jsdelivr.net/gh/NhatNam131/zodal@v1.0.0/zodal.min.css&quot;
          &gt;</code></pre>
 
       <p>
@@ -398,29 +398,225 @@
       </footer>
     </div>
     <!-- /CONTAINER -->
-    <template id="modal-1">
-      <h1>Modal content 1</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
-        quisquam officiis sapiente molestias velit adipisci ipsa expedita
-        voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
-        laudantium deleniti cupiditate.
-      </p>
-    </template>
 
     <script src="./assets/highlight/highlight.js"></script>
     <script src="./src/zodal.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
 
-      const zodal1 = document.querySelector(".js-zodal-modal-1");
+      // Basic modal
+      const zodal1Btn = document.querySelector(".js-zodal-modal-1");
 
-      const zodal = new Zodal({
-        templateId: "modal-1",
+      const zodal1 = new Zodal({
+        content: `
+          <h1>Basic modal</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
       });
 
-      zodal1.addEventListener("click", () => {
-        zodal.open();
+      zodal1Btn.addEventListener("click", () => {
+        zodal1.open();
+      });
+
+      // Modal with buttons
+      const zodal2Btn = document.querySelector(".js-zodal-modal-2");
+
+      const zodal2 = new Zodal({
+        content: `
+          <h1>Modal with buttons</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
+        footer: true,
+      });
+
+      zodal2Btn.addEventListener("click", () => {
+        zodal2.open();
+      });
+
+      zodal2.addFooterButton("Agree", "zodal-btn zodal-primary-btn", () => {
+        alert("Successed!");
+        zodal2.close();
+      });
+
+      zodal2.addFooterButton("Close", "zodal-btn zodal-outline-btn", () => {
+        zodal2.close();
+      });
+
+      // Large content modal
+      const zodal3Btn = document.querySelector(".js-zodal-modal-3");
+
+      const zodal3 = new Zodal({
+        content: `
+          <h1>Large Content Modal</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
+        cssClass: ["zodal-text-content"],
+      });
+
+      zodal3Btn.addEventListener("click", () => {
+        zodal3.open();
+      });
+
+      // Footer only close modal
+      const zodal4Btn = document.querySelector(".js-zodal-modal-4");
+
+      const zodal4 = new Zodal({
+        content: `
+          <h1>Footer-Only Close Modal</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
+        closeMethod: [],
+        footer: true,
+      });
+
+      zodal4.addFooterButton("Close", "zodal-btn zodal-outline-btn", () => {
+        zodal4.close();
+      });
+
+      zodal4Btn.addEventListener("click", () => {
+        zodal4.open();
+      });
+
+      // Persistent modal
+      const zodal5Btn = document.querySelector(".js-zodal-modal-5");
+
+      const zodal5 = new Zodal({
+        content: `
+          <h1>Persistent Modal (Stays in DOM)</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
+        destroyZodal: false,
+      });
+
+      zodal5Btn.addEventListener("click", () => {
+        zodal5.open();
+      });
+
+      // Multiple Modals
+      const zodal6Btn = document.querySelector(".js-zodal-modal-6");
+
+      const zodal6 = new Zodal({
+        content: `
+          <h1>Footer-Only Close Modal</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt
+            quisquam officiis sapiente molestias velit adipisci ipsa expedita
+            voluptatem? Sint, sed expedita provident suscipit in est reprehenderit
+            laudantium deleniti cupiditate.
+          </p>
+        `,
+        footer: true,
+      });
+
+      zodal6.addFooterButton(
+        "Open Basic Modal",
+        "zodal-btn zodal-primary-btn",
+        () => {
+          zodal1.open();
+        }
+      );
+
+      zodal6Btn.addEventListener("click", () => {
+        zodal6.open();
+      });
+
+      // Youtube Embed Modal
+      const zodal7Btn = document.querySelector(".js-zodal-modal-7");
+
+      const zodal7 = new Zodal({
+        content: `
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/ebd3XCW-k2o?si=chYB6iSYnKb5HdZz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        `,
+        destroyZodal: false,
+      });
+
+      zodal7Btn.addEventListener("click", () => {
+        zodal7.open();
       });
     </script>
   </body>
